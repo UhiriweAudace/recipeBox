@@ -1,0 +1,17 @@
+$color: #a12525;
+header {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  box-shadow: 2px 3px 3px #ccc;
+  padding: 1rem;
+  .__main_header{
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+  }
+  .info {
+    color: $color;
+  }
+}
