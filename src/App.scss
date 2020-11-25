@@ -5,10 +5,6 @@ $black:#000;
 $boxShadow: 2px 3px 3px;
 
 header {
-  //   position: fixed;
-  //   top: 0;
-  //   right: 0;
-  //   left: 0;
   box-shadow: $boxShadow $grey;
   padding: 1rem 5%;
 
@@ -40,8 +36,6 @@ ol {
   cursor: pointer;
 }
 
-
-
 .left-side {
   display: flex;
   flex-direction: column;
@@ -60,7 +54,7 @@ ol {
         background-color: $red;
         border-top-right-radius: 2rem;
         border-bottom-right-radius: 2rem;
-        color: #fff;
+        color: $white;
         transition: 3s background-color;
         box-shadow: $boxShadow $grey;
         cursor: pointer;
@@ -73,7 +67,7 @@ ol {
   background-color: $red;
   border-top-right-radius: 2rem;
   border-bottom-right-radius: 2rem;
-  color: #fff;
+  color: $white;
   transition: 3s background-color;
   box-shadow: $boxShadow $grey;
   cursor: pointer;
@@ -111,6 +105,7 @@ ol {
   display: flex;
   align-items: center;
   justify-content: flex-end;
+
   .anticon {
     font-size: 1rem !important;
   }
