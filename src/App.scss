@@ -1,17 +1,135 @@
-$color: #a12525;
+$red: #a12525;
+$grey: #ccc;
+$white:#fff;
+$black:#000;
+$boxShadow: 2px 3px 3px;
+
 header {
-  position: fixed;
-  top: 0;
-  right: 0;
-  left: 0;
-  box-shadow: 2px 3px 3px #ccc;
-  padding: 1rem;
-  .__main_header{
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+  //   position: fixed;
+  //   top: 0;
+  //   right: 0;
+  //   left: 0;
+  box-shadow: $boxShadow $grey;
+  padding: 1rem 5%;
+
+  .anticon {
+    font-size: 2rem;
   }
+
+  .__main_header {
+    display: flex;
+    align-items: center;
+    color: $red;
+  }
+
   .info {
-    color: $color;
+    color: $red;
+    font-weight: bold;
+    font-size: 1.3rem;
+  }
+
+  .navigation {
+    display: flex;
+    justify-content: space-between;
+    width: 8rem;
+  }
+}
+
+ul,
+ol {
+  cursor: pointer;
+}
+
+
+
+.left-side {
+  display: flex;
+  flex-direction: column;
+
+  p {
+    list-style: none;
+    padding: 2rem 10%;
+    line-height: 2.8rem;
+
+    span {
+      font-size: 1.2rem;
+      font-weight: bold;
+      padding: 5px;
+
+      &:hover {
+        background-color: $red;
+        border-top-right-radius: 2rem;
+        border-bottom-right-radius: 2rem;
+        color: #fff;
+        transition: 3s background-color;
+        box-shadow: $boxShadow $grey;
+        cursor: pointer;
+      }
+    }
+  }
+}
+
+.active {
+  background-color: $red;
+  border-top-right-radius: 2rem;
+  border-bottom-right-radius: 2rem;
+  color: #fff;
+  transition: 3s background-color;
+  box-shadow: $boxShadow $grey;
+  cursor: pointer;
+}
+
+.right-side {
+  padding: 2rem 5%;
+
+  .info-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .anticon {
+      font-size: 2rem !important;
+    }
+  }
+}
+
+.ant-modal-close-x {
+  svg {
+    font-size: 1.2rem;
+  }
+}
+
+.ant-modal-body {
+  line-height: 3.5;
+
+  svg {
+    font-size: 1rem;
+  }
+}
+
+.ant-btn {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  .anticon {
+    font-size: 1rem !important;
+  }
+
+  svg {
+    font-size: 1rem;
+  }
+}
+
+.buttons {
+  button:nth-child(1) {
+    margin-right: 1rem;
+  }
+
+  button:hover {
+    background-color: $black;
+    color: $white;
+    transition: 2s background-color linear;
+    border: none;
+    outline: none;
   }
 }
