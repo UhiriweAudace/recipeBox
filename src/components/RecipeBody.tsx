@@ -3,7 +3,7 @@ import { PlusCircleFilled, EditOutlined, DeleteOutlined } from "@ant-design/icon
 import { Col, Row, Button } from "antd";
 import { RecipeBodyProps } from "../types";
 
-export default function RecipeBody({ selected, setOpen, open, setEdit, setForm }: RecipeBodyProps) {
+export default function RecipeBody({ selected, setOpen, open, setEdit, setForm, setIsDeleted }: RecipeBodyProps) {
   return (
     <Col xs={24} sm={16} lg={16} className="right-side">
       <span className="text text-1">{selected?.name}</span>
@@ -42,7 +42,13 @@ export default function RecipeBody({ selected, setOpen, open, setEdit, setForm }
           <EditOutlined />
           Edit
         </Button>
-        <Button className="btn btn-dark">
+        <Button
+          className="btn btn-dark"
+          onClick={() => {
+            setOpen(true);
+            setIsDeleted(true);
+          }}
+        >
           <DeleteOutlined /> Delete
         </Button>
       </Row>
