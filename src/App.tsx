@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { SisternodeOutlined, PlusCircleFilled, EditOutlined, DeleteOutlined } from "@ant-design/icons";
-import { Row, Col, Modal, Button, Input } from "antd";
+import { Row } from "antd";
 import "./App.scss";
 import values from "./constants";
 import { Recipe } from "./types";
@@ -11,9 +10,10 @@ import RecipeModal from "./components/RecipeModal";
 
 function App() {
   const [open, setOpen] = useState<boolean>(false);
+  const [edit, setEdit] = useState<boolean>(false);
   const [recipes, setRecipes] = useState<Recipe[] | null>(null);
   const [selected, setSelected] = useState<Recipe | null>(null);
-  const [form, setform] = useState<Recipe>({ name: "", ingredients: [""], direction: [""] });
+  const [form, setform] = useState<Recipe>({ id: "", name: "", ingredients: [""], direction: [""] });
 
   useEffect(() => {
     localStorage.setItem("audace_recipes", localStorage.getItem("audace_recipes") || JSON.stringify(values));
@@ -31,8 +31,22 @@ function App() {
 
   const onSubmitHandler = (ev: React.MouseEvent<HTMLElement, MouseEvent>): void => {
     ev.preventDefault();
-    const data = recipes?.push(form);
+    const data = recipes;
+    data?.push({ ...form, id: data.length });
     localStorage.setItem("audace_recipes", JSON.stringify(data));
+    setSelected(form);
+    setOpen(false);
+  };
+
+  const onUpdateHandler = (ev: React.MouseEvent<HTMLElement, MouseEvent>): void => {
+    recipes?.forEach((value, index) => {
+      if (value.id === selected?.id) {
+        recipes[index].name = form.name;
+        recipes[index].ingredients = form.ingredients;
+        recipes[index].direction = form.direction;
+      }
+    });
+    localStorage.setItem("audace_recipes", JSON.stringify(recipes));
     setSelected(form);
     setOpen(false);
   };
@@ -43,7 +57,7 @@ function App() {
       <div>
         <Row>
           <RecipeList recipes={recipes} selected={selected} setSelected={setSelected} />
-          <RecipeBody selected={selected} setOpen={setOpen} />
+          <RecipeBody selected={selected} setOpen={setOpen} open={open} setEdit={setEdit} setForm={setform} />
           <RecipeModal
             open={open}
             setOpen={setOpen}
@@ -51,6 +65,10 @@ function App() {
             onSubmitHandler={onSubmitHandler}
             onchange={onchange}
             handleOk={handleOk}
+            edit={edit}
+            setEdit={setEdit}
+            selected={selected}
+            onUpdateHandler={onUpdateHandler}
           />
         </Row>
       </div>

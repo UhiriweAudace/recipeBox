@@ -5,10 +5,13 @@ import { Recipe } from "../types";
 
 type Props = {
   selected: Recipe | null;
+  setEdit: (value: boolean) => void;
   setOpen: (value: boolean) => void;
+  setForm:(selected:Recipe)=>void;
+  open: boolean;
 };
 
-export default function RecipeBody({ selected, setOpen }: Props) {
+export default function RecipeBody({ selected, setOpen, open, setEdit,setForm }: Props) {
   return (
     <Col xs={24} sm={16} lg={16} className="right-side">
       <h5>{selected?.name}</h5>
@@ -16,7 +19,7 @@ export default function RecipeBody({ selected, setOpen }: Props) {
         <div>
           <div className="info-header">
             <span>ingredients:</span>
-            <span onClick={(e) => setOpen(!open)}>
+            <span onClick={() => setOpen(!open)}>
               <PlusCircleFilled />
             </span>
           </div>
@@ -36,7 +39,13 @@ export default function RecipeBody({ selected, setOpen }: Props) {
         </div>
       </div>
       <Row className="buttons">
-        <Button>
+        <Button
+          onClick={() => {
+            setEdit(true);
+            setOpen(true);
+            selected&&setForm(selected)
+          }}
+        >
           <EditOutlined />
           Edit
         </Button>

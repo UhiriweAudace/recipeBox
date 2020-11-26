@@ -1,33 +1,54 @@
 import React from "react";
 import { Recipe } from "../types";
-import Modal from "antd/lib/modal/Modal";
-import { Button, Input } from "antd";
+import { Button, Input, Modal } from "antd";
 
 type Props = {
   form: Recipe;
+  selected?: Recipe | null;
   open: boolean;
+  edit?: boolean;
+  setEdit: (value: boolean) => void;
   handleOk: () => void;
   setOpen: (value: boolean) => void;
   onSubmitHandler: (ev: React.MouseEvent<HTMLElement, MouseEvent>) => void;
+  onUpdateHandler: (ev: React.MouseEvent<HTMLElement, MouseEvent>) => void;
   onchange: (ev: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
 };
 
-export default function RecipeModal({ form, open, handleOk, setOpen, onSubmitHandler, onchange }: Props) {
+export default function RecipeModal({
+  form,
+  selected,
+  open,
+  handleOk,
+  setOpen,
+  onSubmitHandler,
+  onUpdateHandler,
+  onchange,
+  edit,
+  setEdit,
+}: Props) {
+  const onCancelHandler = () => {
+    setOpen(!open);
+    setEdit(false);
+  };
+
   return (
     <Modal
-      title="Add a new recipe into the box"
+      title={!edit ? "Add a new recipe into the box" : "Edit this recipe information"}
       visible={open}
       maskClosable={false}
       onOk={handleOk}
-      onCancel={() => setOpen(!open)}
+      onCancel={onCancelHandler}
       footer={[
         <Button
           key="submit"
           type="primary"
           loading={false}
-          onClick={(ev: React.MouseEvent<HTMLElement, MouseEvent>) => onSubmitHandler(ev)}
+          onClick={(ev: React.MouseEvent<HTMLElement, MouseEvent>) =>
+            !edit ? onSubmitHandler(ev) : onUpdateHandler(ev)
+          }
         >
-          Submit
+          {!edit ? "Submit" : "Update"}
         </Button>,
       ]}
     >
@@ -37,6 +58,7 @@ export default function RecipeModal({ form, open, handleOk, setOpen, onSubmitHan
         allowClear
         value={form?.name}
         onChange={(ev) => onchange(ev)}
+        onError={() => "Error"}
       />
       <Input.TextArea
         placeholder="Enter a recipe ingredients"

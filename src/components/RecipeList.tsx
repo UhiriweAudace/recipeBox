@@ -7,21 +7,24 @@ type Props = {
   selected: Recipe | null;
   setSelected: (recipe: Recipe) => void;
 };
+
 export default function RecipeList({ recipes, selected, setSelected }: Props) {
   return (
     <Col xs={24} sm={8} lg={8} className="left-side">
-      <p>
+      <div className="list">
         {recipes &&
           recipes.map((recipe, index) => {
             return (
-              <div key={index}>
-                <span className={recipe.name === selected?.name ? "active" : ""} onClick={() => setSelected(recipe)}>
-                  {recipe.name}
-                </span>
+              <div
+                key={recipe.id}
+                className={recipe.name === selected?.name ? "active" : ""}
+                onClick={() => setSelected(recipe)}
+              >
+                {recipe.name}
               </div>
             );
           })}
-      </p>
+      </div>
     </Col>
   );
 }
