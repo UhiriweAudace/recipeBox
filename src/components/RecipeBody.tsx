@@ -11,7 +11,7 @@ export default function RecipeBody({ selected, setOpen, open, setEdit, setForm, 
         <div>
           <div className="info-header">
             <span className="text text-2">Ingredients:</span>
-            <span onClick={() => setOpen(!open)}>
+            <span onClick={() => {setOpen(!open); setEdit(false); setIsDeleted(false)}}>
               <PlusCircleFilled />
             </span>
           </div>
