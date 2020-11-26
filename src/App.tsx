@@ -66,7 +66,7 @@ function App() {
     });
     const data = recipes?.filter((value) => value != null);
     localStorage.setItem(RECIPES_USERNAME, JSON.stringify(data));
-    setSelected(form);
+    setSelected(null);
     setform({ id: "", name: "", ingredients: [""], direction: [""] });
     setEdit(false);
     setOpen(false);
