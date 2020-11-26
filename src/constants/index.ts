@@ -1,4 +1,4 @@
-const values = [
+ export const values = [
   {
     id:1,
     name: "Pasta chocolate soup",
@@ -19,4 +19,4 @@ const values = [
   },
 ];
 
-export default values;
+export const RECIPES_USERNAME="audace_recipes"

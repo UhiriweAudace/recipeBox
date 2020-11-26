@@ -1,19 +1,6 @@
 import React from "react";
-import { Recipe } from "../types";
 import { Button, Input, Modal } from "antd";
-
-type Props = {
-  form: Recipe;
-  selected?: Recipe | null;
-  open: boolean;
-  edit?: boolean;
-  setEdit: (value: boolean) => void;
-  handleOk: () => void;
-  setOpen: (value: boolean) => void;
-  onSubmitHandler: (ev: React.MouseEvent<HTMLElement, MouseEvent>) => void;
-  onUpdateHandler: (ev: React.MouseEvent<HTMLElement, MouseEvent>) => void;
-  onchange: (ev: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
-};
+import { RecipeModalProps } from "../types";
 
 export default function RecipeModal({
   form,
@@ -26,7 +13,7 @@ export default function RecipeModal({
   onchange,
   edit,
   setEdit,
-}: Props) {
+}: RecipeModalProps) {
   const onCancelHandler = () => {
     setOpen(!open);
     setEdit(false);
@@ -43,6 +30,7 @@ export default function RecipeModal({
         <Button
           key="submit"
           type="primary"
+          className="btn btn-dark"
           loading={false}
           onClick={(ev: React.MouseEvent<HTMLElement, MouseEvent>) =>
             !edit ? onSubmitHandler(ev) : onUpdateHandler(ev)
@@ -63,14 +51,13 @@ export default function RecipeModal({
       <Input.TextArea
         placeholder="Enter a recipe ingredients"
         name="ingredients"
-        allowClear
         value={form?.ingredients.join("\\")}
         onChange={(ev) => onchange(ev)}
+        className="mt-1"
       />
       <Input.TextArea
         placeholder="Enter a recipe direction"
         name="direction"
-        allowClear
         value={form?.direction.join("\\")}
         onChange={(ev) => onchange(ev)}
       />

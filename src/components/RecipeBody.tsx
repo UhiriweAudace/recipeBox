@@ -1,24 +1,16 @@
 import React from "react";
 import { PlusCircleFilled, EditOutlined, DeleteOutlined } from "@ant-design/icons";
 import { Col, Row, Button } from "antd";
-import { Recipe } from "../types";
+import { RecipeBodyProps } from "../types";
 
-type Props = {
-  selected: Recipe | null;
-  setEdit: (value: boolean) => void;
-  setOpen: (value: boolean) => void;
-  setForm:(selected:Recipe)=>void;
-  open: boolean;
-};
-
-export default function RecipeBody({ selected, setOpen, open, setEdit,setForm }: Props) {
+export default function RecipeBody({ selected, setOpen, open, setEdit, setForm }: RecipeBodyProps) {
   return (
     <Col xs={24} sm={16} lg={16} className="right-side">
-      <h5>{selected?.name}</h5>
+      <span className="text text-1">{selected?.name}</span>
       <div>
         <div>
           <div className="info-header">
-            <span>ingredients:</span>
+            <span className="text text-2">Ingredients:</span>
             <span onClick={() => setOpen(!open)}>
               <PlusCircleFilled />
             </span>
@@ -30,7 +22,7 @@ export default function RecipeBody({ selected, setOpen, open, setEdit,setForm }:
           </ul>
         </div>
         <div>
-          <span>directions:</span>
+          <span className="text text-2">Directions:</span>
           <ol>
             {selected?.direction.map((value, index) => {
               return <li key={index}>{value}</li>;
@@ -38,18 +30,19 @@ export default function RecipeBody({ selected, setOpen, open, setEdit,setForm }:
           </ol>
         </div>
       </div>
-      <Row className="buttons">
+      <Row>
         <Button
           onClick={() => {
             setEdit(true);
             setOpen(true);
-            selected&&setForm(selected)
+            selected && setForm(selected);
           }}
+          className="btn btn-dark"
         >
           <EditOutlined />
           Edit
         </Button>
-        <Button>
+        <Button className="btn btn-dark">
           <DeleteOutlined /> Delete
         </Button>
       </Row>

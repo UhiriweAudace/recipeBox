@@ -1,19 +1,13 @@
 import React from "react";
 import { Col } from "antd";
-import { Recipe } from "../types";
+import { RecipeListProps } from "../types";
 
-type Props = {
-  recipes: Recipe[] | null;
-  selected: Recipe | null;
-  setSelected: (recipe: Recipe) => void;
-};
-
-export default function RecipeList({ recipes, selected, setSelected }: Props) {
+export default function RecipeList({ recipes, selected, setSelected }: RecipeListProps) {
   return (
     <Col xs={24} sm={8} lg={8} className="left-side">
       <div className="list">
         {recipes &&
-          recipes.map((recipe, index) => {
+          recipes.map((recipe) => {
             return (
               <div
                 key={recipe.id}

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Row } from "antd";
 import "./App.scss";
-import values from "./constants";
+import { values, RECIPES_USERNAME } from "./constants";
 import { Recipe } from "./types";
 import MainHeader from "./components/MainHeader";
 import RecipeList from "./components/RecipeList";
@@ -16,8 +16,8 @@ function App() {
   const [form, setform] = useState<Recipe>({ id: "", name: "", ingredients: [""], direction: [""] });
 
   useEffect(() => {
-    localStorage.setItem("audace_recipes", localStorage.getItem("audace_recipes") || JSON.stringify(values));
-    const data = localStorage.getItem("audace_recipes");
+    localStorage.setItem(RECIPES_USERNAME, localStorage.getItem(RECIPES_USERNAME) || JSON.stringify(values));
+    const data = localStorage.getItem(RECIPES_USERNAME);
     setRecipes(JSON.parse(data || ""));
     setSelected(JSON.parse(data || "")[0]);
   }, []);
@@ -33,12 +33,13 @@ function App() {
     ev.preventDefault();
     const data = recipes;
     data?.push({ ...form, id: data.length });
-    localStorage.setItem("audace_recipes", JSON.stringify(data));
+    localStorage.setItem(RECIPES_USERNAME, JSON.stringify(data));
     setSelected(form);
     setOpen(false);
   };
 
   const onUpdateHandler = (ev: React.MouseEvent<HTMLElement, MouseEvent>): void => {
+    ev.preventDefault();
     recipes?.forEach((value, index) => {
       if (value.id === selected?.id) {
         recipes[index].name = form.name;
@@ -46,7 +47,7 @@ function App() {
         recipes[index].direction = form.direction;
       }
     });
-    localStorage.setItem("audace_recipes", JSON.stringify(recipes));
+    localStorage.setItem(RECIPES_USERNAME, JSON.stringify(recipes));
     setSelected(form);
     setOpen(false);
   };
@@ -54,7 +55,6 @@ function App() {
   return (
     <div className="App">
       <MainHeader />
-      <div>
         <Row>
           <RecipeList recipes={recipes} selected={selected} setSelected={setSelected} />
           <RecipeBody selected={selected} setOpen={setOpen} open={open} setEdit={setEdit} setForm={setform} />
@@ -71,7 +71,6 @@ function App() {
             onUpdateHandler={onUpdateHandler}
           />
         </Row>
-      </div>
     </div>
   );
 }
