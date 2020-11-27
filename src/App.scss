@@ -16,7 +16,8 @@ header {
     display: flex;
     align-items: center;
     color: $red;
-    .ant-row{
+
+    .ant-row {
       width: 100%;
     }
   }
@@ -55,6 +56,8 @@ ol {
       height: 50px;
       overflow: hidden;
       text-overflow: ellipsis !important;
+      width: 250px;
+      white-space: nowrap;
 
       &:hover {
         background-color: $red;
@@ -80,6 +83,10 @@ ol {
   transition: 3s background-color;
   box-shadow: $boxShadow $grey;
   cursor: pointer;
+  overflow: hidden;
+  text-overflow: ellipsis !important;
+  width: 250px;
+  white-space: nowrap;
 }
 
 .right-side {
