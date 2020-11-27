@@ -22,7 +22,7 @@ function App() {
     localStorage.setItem(RECIPES_USERNAME, localStorage.getItem(RECIPES_USERNAME) || JSON.stringify(VALUES));
     const data = localStorage.getItem(RECIPES_USERNAME);
     data && setRecipes(JSON.parse(data));
-    !selected && data && setSelected(JSON.parse(data)[0]);
+    !selected && data && data !== "null"&& data!=="undefined" && setSelected(JSON.parse(data)[0]);
   }, [selected]);
 
   const handleOk = (): void => {};
