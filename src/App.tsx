@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Row, Image } from "antd";
+import { Row, Image, Col } from "antd";
 import "./App.scss";
 import { VALUES, RECIPES_USERNAME } from "./constants";
 import { Recipe } from "./types";
@@ -22,7 +22,7 @@ function App() {
     localStorage.setItem(RECIPES_USERNAME, localStorage.getItem(RECIPES_USERNAME) || JSON.stringify(VALUES));
     const data = localStorage.getItem(RECIPES_USERNAME);
     data && setRecipes(JSON.parse(data));
-    !selected && data && data !== "null"&& data!=="undefined" && setSelected(JSON.parse(data)[0]);
+    !selected && data && data !== "null" && data !== "undefined" && setSelected(JSON.parse(data)[0]);
   }, [selected]);
 
   const handleOk = (): void => {};
@@ -88,10 +88,11 @@ function App() {
   return (
     <div className="App">
       <MainHeader />
-      {!recipes||recipes.length===0 ? (
+      {!recipes || recipes.length === 0 ? (
         <NotFound open={open} setOpen={setOpen} setEdit={setEdit} setIsDeleted={setIsDeleted} />
       ) : (
         <Row>
+          <Col xs={24} sm={24} lg={4}></Col>
           <RecipeList recipes={recipes} selected={selected} setSelected={setSelected} />
           <RecipeBody
             selected={selected}

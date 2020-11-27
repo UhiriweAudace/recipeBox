@@ -4,7 +4,7 @@ import { RecipeListProps } from "../types";
 
 export default function RecipeList({ recipes, selected, setSelected }: RecipeListProps) {
   return (
-    <Col xs={24} sm={8} lg={8} className="left-side">
+    <Col xs={24} sm={8} lg={6} className="left-side">
       <div className="list">
         {recipes &&
           recipes.map((recipe) => {

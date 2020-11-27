@@ -16,6 +16,9 @@ header {
     display: flex;
     align-items: center;
     color: $red;
+    .ant-row{
+      width: 100%;
+    }
   }
 
   .info {
