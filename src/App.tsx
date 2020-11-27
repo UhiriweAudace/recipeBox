@@ -42,7 +42,7 @@ function App() {
       setSelected(Object.assign({ ...form }, { id: data && data[data.length - 1].id }));
     } else {
       const info = [];
-      info.push(Object.assign({ ...form, id: 1 }));
+      info.push(Object.assign({}, { ...form, id: 1 }));
       localStorage.setItem(RECIPES_USERNAME, JSON.stringify(info));
       const datas = localStorage.getItem(RECIPES_USERNAME);
       datas && setRecipes(JSON.parse(datas));
@@ -88,7 +88,7 @@ function App() {
   return (
     <div className="App">
       <MainHeader />
-      {!recipes || recipes.length === 0 ? (
+      {!recipes || !recipes.length ? (
         <NotFound open={open} setOpen={setOpen} setEdit={setEdit} setIsDeleted={setIsDeleted} />
       ) : (
         <Row>
