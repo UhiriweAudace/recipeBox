@@ -88,7 +88,7 @@ function App() {
   return (
     <div className="App">
       <MainHeader />
-      {!recipes ? (
+      {!recipes||recipes.length===0 ? (
         <NotFound open={open} setOpen={setOpen} setEdit={setEdit} setIsDeleted={setIsDeleted} />
       ) : (
         <Row>
