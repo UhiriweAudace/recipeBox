@@ -1,4 +1,3 @@
-import React from "react";
 export type Recipe = {
   id: number | string;
   name: string;

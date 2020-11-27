@@ -11,7 +11,7 @@ export default function RecipeList({ recipes, selected, setSelected }: RecipeLis
             return (
               <div
                 key={recipe.id}
-                className={recipe.name === selected?.name ? "active" : ""}
+                className={recipe.id === selected?.id ? "active" : ""}
                 onClick={() => setSelected(recipe)}
               >
                 {recipe.name}

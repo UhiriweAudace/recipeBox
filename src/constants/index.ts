@@ -1,4 +1,4 @@
- export const values = [
+ export const VALUES = [
   {
     id:1,
     name: "Pasta chocolate soup",
