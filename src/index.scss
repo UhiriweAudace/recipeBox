@@ -3,6 +3,8 @@
 
 body {
   margin: 0;
+  padding: 0;
+  box-sizing: border-box;
   font-family: 'Nunito', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -10,4 +12,13 @@ body {
 
 code {
   font-family: 'Nunito', sans-serif;
+}
+
+.user-svg {
+  position: absolute;
+  left: -15px;
+  top: 45%;
+  width: 30rem !important;
+  z-index: -100;
+  transform: translate(-25%, -25px);
 }

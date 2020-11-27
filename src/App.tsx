@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Row } from "antd";
+import { Row, Image } from "antd";
 import "./App.scss";
 import { values, RECIPES_USERNAME } from "./constants";
 import { Recipe } from "./types";
@@ -7,6 +7,7 @@ import MainHeader from "./components/MainHeader";
 import RecipeList from "./components/RecipeList";
 import RecipeBody from "./components/RecipeBody";
 import RecipeModal from "./components/RecipeModal";
+import UserSvg from "./assets/user.svg"
 
 function App() {
   const [open, setOpen] = useState<boolean>(false);
@@ -103,6 +104,9 @@ function App() {
           onDeleteHandler={onDeleteHandler}
         />
       </Row>
+      <div>
+        <Image className="user-svg" src={UserSvg} width={200}/>
+      </div>
     </div>
   );
 }
