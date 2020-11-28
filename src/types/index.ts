@@ -1,11 +1,11 @@
-export type Recipe = {
+export interface Recipe {
   id: number | string;
   name: string;
   ingredients: string[];
   direction: string[];
-};
+}
 
-export type RecipeModalProps = {
+export interface RecipeModalProps {
   form: Recipe;
   setform: React.Dispatch<React.SetStateAction<Recipe>>;
   selected?: Recipe | null;
@@ -20,19 +20,19 @@ export type RecipeModalProps = {
   onUpdateHandler: (ev: React.MouseEvent<HTMLElement, MouseEvent>) => void;
   onDeleteHandler: (ev: React.MouseEvent<HTMLElement, MouseEvent>) => void;
   onchange: (ev: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
-};
+}
 
-export type RecipeListProps = {
+export interface RecipeListProps {
   recipes: Recipe[] | null;
   selected: Recipe | null;
   setSelected: (recipe: Recipe) => void;
-};
+}
 
-export type RecipeBodyProps = {
+export interface RecipeBodyProps {
   selected: Recipe | null;
   setEdit: (value: boolean) => void;
   setOpen: (value: boolean) => void;
   setForm: (selected: Recipe) => void;
   setIsDeleted: (value: boolean) => void;
   open: boolean;
-};
+}
