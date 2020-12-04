@@ -1,12 +1,8 @@
 import React from "react";
 import { Row, Button } from "antd";
 import { PlusCircleFilled } from "@ant-design/icons";
-type NotFoundProps = {
-  open: boolean;
-  setOpen: (value: boolean) => void;
-  setEdit: (value: boolean) => void;
-  setIsDeleted: (value: boolean) => void;
-};
+import { NotFoundProps } from "../types";
+
 const NotFound = ({ open, setOpen, setEdit, setIsDeleted }: NotFoundProps) => {
   return (
     <Row className="flex-center">

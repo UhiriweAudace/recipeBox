@@ -36,3 +36,10 @@ export interface RecipeBodyProps {
   setIsDeleted: (value: boolean) => void;
   open: boolean;
 }
+
+export interface NotFoundProps {
+  open: boolean;
+  setOpen: (value: boolean) => void;
+  setEdit: (value: boolean) => void;
+  setIsDeleted: (value: boolean) => void;
+}
