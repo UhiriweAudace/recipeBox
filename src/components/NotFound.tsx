@@ -8,15 +8,6 @@ const NotFound = ({ open, setOpen, setEdit, setIsDeleted }: NotFoundProps) => {
     <Row className="flex-center">
       <div className="not-found">
         <p className="text text-2">No Recipe Found</p>
-        {/* <span
-          onClick={() => {
-            setOpen(!open);
-            setEdit(false);
-            setIsDeleted(false);
-          }}
-        >
-          <PlusCircleFilled />
-        </span> */}
         <Button
           key="submit"
           type="primary"
@@ -31,7 +22,6 @@ const NotFound = ({ open, setOpen, setEdit, setIsDeleted }: NotFoundProps) => {
           <PlusCircleFilled />
           Add new recipe
         </Button>
-        ,
       </div>
     </Row>
   );
