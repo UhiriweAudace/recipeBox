@@ -1,5 +1,5 @@
 export interface Recipe {
-  id: number | string;
+  id: string;
   name: string;
   ingredients: string[];
   direction: string[];
@@ -11,8 +11,8 @@ export interface RecipeModalProps {
   selected?: Recipe | null;
   open: boolean;
   edit?: boolean;
-  setEdit: (value: boolean) => void;
   isDeleted?: boolean;
+  setEdit: (value: boolean) => void;
   setIsDeleted: (value: boolean) => void;
   handleOk: () => void;
   setOpen: (value: boolean) => void;
@@ -29,12 +29,12 @@ export interface RecipeListProps {
 }
 
 export interface RecipeBodyProps {
+  open: boolean;
   selected: Recipe | null;
   setEdit: (value: boolean) => void;
   setOpen: (value: boolean) => void;
   setForm: (selected: Recipe) => void;
   setIsDeleted: (value: boolean) => void;
-  open: boolean;
 }
 
 export interface NotFoundProps {

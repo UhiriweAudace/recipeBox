@@ -1,42 +1,42 @@
-import React from "react";
+import React, { useRef, useEffect } from "react";
 import { Button, Input, Modal } from "antd";
 import { RecipeModalProps } from "../types";
+import { TextAreaRef } from "antd/lib/input/TextArea";
 
-export default function RecipeModal({
-  form,
-  setform,
-  selected,
-  open,
-  handleOk,
-  setOpen,
-  onSubmitHandler,
-  onUpdateHandler,
-  onDeleteHandler,
-  onchange,
-  edit,
-  setEdit,
-  isDeleted,
-  setIsDeleted,
-}: RecipeModalProps) {
+export default function RecipeModal(props: RecipeModalProps) {
+  const recipeNameRef = useRef<Input>(null);
+  const recipeIngredientRef = useRef<TextAreaRef>(null);
+  useEffect(() => {
+    if (recipeNameRef && recipeNameRef.current) {
+      recipeNameRef.current.focus();
+    }
+  }, []);
+
+  const recipeNameKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Enter" && recipeIngredientRef && recipeIngredientRef.current) {
+      recipeIngredientRef.current.focus();
+    }
+  };
+
   const onCancelHandler = () => {
-    setOpen(!open);
-    setEdit(false);
-    setIsDeleted(false);
-    setform({ id: "", name: "", ingredients: [""], direction: [""] });
+    props.setOpen(!props.open);
+    props.setEdit(false);
+    props.setIsDeleted(false);
+    props.setform({ id: "", name: "", ingredients: [""], direction: [""] });
   };
 
   return (
     <Modal
       title={
-        !edit && !isDeleted
+        !props.edit && !props.isDeleted
           ? "Add a new recipe into the box"
-          : !isDeleted
+          : !props.isDeleted
           ? "Edit this recipe information"
           : "Are you sure?"
       }
-      visible={open}
+      visible={props.open}
       maskClosable={false}
-      onOk={handleOk}
+      onOk={props.handleOk}
       onCancel={onCancelHandler}
       footer={[
         <Button
@@ -45,35 +45,42 @@ export default function RecipeModal({
           className="btn btn-dark"
           loading={false}
           onClick={(ev: React.MouseEvent<HTMLElement, MouseEvent>) =>
-            !edit && !isDeleted ? onSubmitHandler(ev) : !isDeleted ? onUpdateHandler(ev) : onDeleteHandler(ev)
+            !props.edit && !props.isDeleted
+              ? props.onSubmitHandler(ev)
+              : !props.isDeleted
+              ? props.onUpdateHandler(ev)
+              : props.onDeleteHandler(ev)
           }
         >
-          {!edit && !isDeleted ? "Submit" : !isDeleted ? "Update" : "Yes, Delete it"}
+          {!props.edit && !props.isDeleted ? "Submit" : !props.isDeleted ? "Update" : "Yes, Delete it"}
         </Button>,
       ]}
     >
-      {!isDeleted ? (
+      {!props.isDeleted ? (
         <>
           <Input
             placeholder="Enter a recipe name"
             name="name"
             allowClear
-            value={form?.name}
-            onChange={(ev) => onchange(ev)}
+            value={props.form?.name}
+            onChange={(ev) => props.onchange(ev)}
             onError={() => "Error"}
+            ref={recipeNameRef}
+            onKeyDown={recipeNameKeyDown}
           />
           <Input.TextArea
             placeholder="Enter a recipe ingredients"
             name="ingredients"
-            value={form?.ingredients.join("\\")}
-            onChange={(ev) => onchange(ev)}
+            value={props.form?.ingredients.join("\\")}
+            onChange={(ev) => props.onchange(ev)}
             className="mt-1"
+            ref={recipeIngredientRef}
           />
           <Input.TextArea
             placeholder="Enter a recipe direction"
             name="direction"
-            value={form?.direction.join("\\")}
-            onChange={(ev) => onchange(ev)}
+            value={props.form?.direction.join("\\")}
+            onChange={(ev) => props.onchange(ev)}
           />
         </>
       ) : (

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Row, Image, Col } from "antd";
+import { v4 } from "uuid";
 import "./App.scss";
 import { VALUES, RECIPES_USERNAME } from "./constants";
 import { Recipe } from "./types";
@@ -26,29 +27,28 @@ function App() {
   }, [selected]);
 
   const handleOk = (): void => {};
-  const onchange = (ev: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>): void => {
-    if (ev.target.name === "name") setform({ ...form, name: ev.target.value });
-    if (ev.target.name === "ingredients") setform({ ...form, ingredients: ev.target.value.split("\\") });
-    if (ev.target.name === "direction") setform({ ...form, direction: ev.target.value.split("\\") });
+  const onchange = ({ target: { name, value } }: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>): void => {
+    if (name === "name") setform({ ...form, name: value });
+    if (name === "ingredients") setform({ ...form, ingredients: value.split("\\") });
+    if (name === "direction") setform({ ...form, direction: value.split("\\") });
   };
 
   const onSubmitHandler = (ev: React.MouseEvent<HTMLElement, MouseEvent>): void => {
     ev.preventDefault();
     const data = recipes;
     if (data) {
-      data.push(Object.assign({ ...form }, { id: data && data.length + 1 }));
+      data.push(Object.assign({ ...form }, { id: v4() }));
       localStorage.setItem(RECIPES_USERNAME, JSON.stringify(data));
-      setform({ id: "", name: "", ingredients: [""], direction: [""] });
       setSelected(Object.assign({ ...form }, { id: data && data[data.length - 1].id }));
     } else {
       const info = [];
-      info.push(Object.assign({}, { ...form, id: 1 }));
+      info.push(Object.assign({}, { ...form, id: v4() }));
       localStorage.setItem(RECIPES_USERNAME, JSON.stringify(info));
-      const datas = localStorage.getItem(RECIPES_USERNAME);
-      datas && setRecipes(JSON.parse(datas));
-      datas && setSelected(JSON.parse(datas)[0]);
-      setform({ id: "", name: "", ingredients: [""], direction: [""] });
+      const recipesData = localStorage.getItem(RECIPES_USERNAME);
+      recipesData && setRecipes(JSON.parse(recipesData));
+      recipesData && setSelected(JSON.parse(recipesData)[0]);
     }
+    setform({ id: "", name: "", ingredients: [""], direction: [""] });
     setOpen(false);
     setIsDeleted(false);
   };
