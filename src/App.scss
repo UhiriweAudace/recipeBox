@@ -22,7 +22,7 @@ header {
     }
   }
 
-  .info {
+  .title {
     color: $red;
     font-weight: bold;
     font-size: 1.3rem;
@@ -118,6 +118,10 @@ ol {
 .ant-modal-body {
   .mt-1 {
     margin: 1rem 0 !important;
+  }
+
+  .mt--1 {
+    margin: 1rem 0 0 0 !important;
   }
 
   svg {

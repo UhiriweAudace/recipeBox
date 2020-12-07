@@ -62,24 +62,30 @@ const RecipeModal: React.FC<RecipeModalProps> = (props) => {
             allowClear
             value={props.form?.name}
             onChange={(ev) => props.onchange(ev)}
-            onError={() => "Error"}
             ref={recipeNameRef}
             onKeyDown={recipeNameKeyDown}
           />
+          {props.errors.name && <span style={{ color: "red", fontSize: ".8rem" }}>{props.errors.name}</span>}
           <Input.TextArea
             placeholder="Enter a recipe ingredients"
             name="ingredients"
             value={props.form?.ingredients.join("\\")}
             onChange={(ev) => props.onchange(ev)}
-            className="mt-1"
+            className={!props.errors.ingredients ? "mt-1" : "mt--1"}
             ref={recipeIngredientRef}
           />
+          {props.errors.ingredients && (
+            <div  style={{ color: "red", fontSize: ".8rem",marginBottom:"1rem" }}>
+              {props.errors.ingredients}
+            </div>
+          )}
           <Input.TextArea
             placeholder="Enter a recipe direction"
             name="direction"
             value={props.form?.direction.join("\\")}
             onChange={(ev) => props.onchange(ev)}
           />
+          {props.errors.direction && <span style={{ color: "red", fontSize: ".8rem" }}>{props.errors.direction}</span>}
         </>
       ) : (
         <div className="text text-2">Do you want delete this recipe?</div>

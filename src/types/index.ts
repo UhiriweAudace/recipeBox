@@ -12,6 +12,7 @@ export interface RecipeModalProps {
   form: Recipe;
   setform: React.Dispatch<React.SetStateAction<Recipe>>;
   selected?: Recipe | null;
+  errors: Errors;
   handleOk: () => void;
   setEdit: (value: boolean) => void;
   setIsDeleted: (value: boolean) => void;
@@ -42,4 +43,10 @@ export interface NotFoundProps {
   setOpen: (value: boolean) => void;
   setEdit: (value: boolean) => void;
   setIsDeleted: (value: boolean) => void;
+}
+
+export interface Errors {
+  name: string | null;
+  ingredients: string | null;
+  direction: string | null;
 }

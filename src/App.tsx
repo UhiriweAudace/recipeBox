@@ -3,13 +3,14 @@ import { Row, Image, Col } from "antd";
 import { v4 } from "uuid";
 import "./App.scss";
 import { VALUES, RECIPES_USERNAME } from "./constants";
-import { Recipe } from "./types";
+import { Recipe, Errors } from "./types";
 import MainHeader from "./components/MainHeader";
 import RecipeList from "./components/RecipeList";
 import RecipeBody from "./components/RecipeBody";
 import RecipeModal from "./components/RecipeModal";
 import UserSvg from "./assets/user.svg";
 import NotFound from "./components/NotFound";
+import { validateForm } from "./helpers";
 
 const App: React.FC<{}> = () => {
   const [open, setOpen] = useState<boolean>(false);
@@ -18,6 +19,7 @@ const App: React.FC<{}> = () => {
   const [recipes, setRecipes] = useState<Recipe[] | null>(null);
   const [selected, setSelected] = useState<Recipe | null>(null);
   const [form, setform] = useState<Recipe>({ id: "", name: "", ingredients: [""], direction: [""] });
+  const [errors, setErrors] = useState<Errors>({ name: null, ingredients: null, direction: null });
 
   useEffect(() => {
     localStorage.setItem(RECIPES_USERNAME, localStorage.getItem(RECIPES_USERNAME) || JSON.stringify(VALUES));
@@ -28,13 +30,26 @@ const App: React.FC<{}> = () => {
 
   const handleOk = (): void => {};
   const onchange = ({ target: { name, value } }: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>): void => {
-    if (name === "name") setform({ ...form, name: value });
-    if (name === "ingredients") setform({ ...form, ingredients: value.split("\\") });
-    if (name === "direction") setform({ ...form, direction: value.split("\\") });
+    if (name === "name") {
+      setform({ ...form, name: value });
+      setErrors({ ...errors, name: null });
+    }
+    if (name === "ingredients") {
+      setform({ ...form, ingredients: value.split("\\") });
+      setErrors({ ...errors, ingredients: null });
+    }
+    if (name === "direction") {
+      setform({ ...form, direction: value.split("\\") });
+      setErrors({ ...errors, direction: null });
+    }
   };
 
   const onSubmitHandler = (ev: React.MouseEvent<HTMLElement, MouseEvent>): void => {
     ev.preventDefault();
+
+    // [x]  To Do - Validate Modal form
+    if (!validateForm(form, errors, setErrors)) return;
+
     const data = recipes;
     if (data) {
       data.push(Object.assign({ ...form }, { id: v4() }));
@@ -55,6 +70,10 @@ const App: React.FC<{}> = () => {
 
   const onUpdateHandler = (ev: React.MouseEvent<HTMLElement, MouseEvent>): void => {
     ev.preventDefault();
+
+    // [x]  To Do - Validate Modal form
+    if (!validateForm(form, errors, setErrors)) return;
+
     recipes?.forEach((value, index) => {
       if (value.id === selected?.id) {
         recipes[index].name = form.name;
@@ -119,6 +138,7 @@ const App: React.FC<{}> = () => {
         onSubmitHandler={onSubmitHandler}
         onUpdateHandler={onUpdateHandler}
         onDeleteHandler={onDeleteHandler}
+        errors={errors}
       />
       <div>
         <Image className="user-svg" src={UserSvg} width={200} />
