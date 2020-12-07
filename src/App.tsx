@@ -11,7 +11,7 @@ import RecipeModal from "./components/RecipeModal";
 import UserSvg from "./assets/user.svg";
 import NotFound from "./components/NotFound";
 
-function App() {
+const App: React.FC<{}> = () => {
   const [open, setOpen] = useState<boolean>(false);
   const [edit, setEdit] = useState<boolean>(false);
   const [isDeleted, setIsDeleted] = useState<boolean>(false);
@@ -42,7 +42,7 @@ function App() {
       setSelected(Object.assign({ ...form }, { id: data && data[data.length - 1].id }));
     } else {
       const info = [];
-      info.push(Object.assign({}, { ...form, id: v4() }));
+      info.push(Object.assign({ ...form }, { id: v4() }));
       localStorage.setItem(RECIPES_USERNAME, JSON.stringify(info));
       const recipesData = localStorage.getItem(RECIPES_USERNAME);
       recipesData && setRecipes(JSON.parse(recipesData));
@@ -125,6 +125,6 @@ function App() {
       </div>
     </div>
   );
-}
+};
 
 export default App;

@@ -3,7 +3,7 @@ import { Row, Button } from "antd";
 import { PlusCircleFilled } from "@ant-design/icons";
 import { NotFoundProps } from "../types";
 
-const NotFound = ({ open, setOpen, setEdit, setIsDeleted }: NotFoundProps) => {
+const NotFound:React.FC<NotFoundProps> = ({ open, setOpen, setEdit, setIsDeleted }) => {
   return (
     <Row className="flex-center">
       <div className="not-found">

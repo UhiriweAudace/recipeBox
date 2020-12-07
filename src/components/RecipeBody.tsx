@@ -3,7 +3,7 @@ import { PlusCircleFilled, EditOutlined, DeleteOutlined } from "@ant-design/icon
 import { Col, Row, Button } from "antd";
 import { RecipeBodyProps } from "../types";
 
-export default function RecipeBody({ selected, setOpen, open, setEdit, setForm, setIsDeleted }: RecipeBodyProps) {
+const RecipeBody: React.FC<RecipeBodyProps> = ({ selected, setOpen, open, setEdit, setForm, setIsDeleted }) => {
   return (
     <Col xs={24} sm={16} lg={12} className="right-side">
       <span className="text text-1">{selected?.name}</span>
@@ -11,7 +11,13 @@ export default function RecipeBody({ selected, setOpen, open, setEdit, setForm, 
         <div>
           <div className="info-header">
             <span className="text text-2">Ingredients:</span>
-            <span onClick={() => {setOpen(!open); setEdit(false); setIsDeleted(false)}}>
+            <span
+              onClick={() => {
+                setOpen(!open);
+                setEdit(false);
+                setIsDeleted(false);
+              }}
+            >
               <PlusCircleFilled />
             </span>
           </div>
@@ -54,4 +60,6 @@ export default function RecipeBody({ selected, setOpen, open, setEdit, setForm, 
       </Row>
     </Col>
   );
-}
+};
+
+export default RecipeBody;

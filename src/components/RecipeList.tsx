@@ -2,7 +2,7 @@ import React from "react";
 import { Col } from "antd";
 import { RecipeListProps } from "../types";
 
-export default function RecipeList({ recipes, selected, setSelected }: RecipeListProps) {
+const RecipeList: React.FC<RecipeListProps> = ({ recipes, selected, setSelected }) => {
   return (
     <Col xs={24} sm={8} lg={6} className="left-side">
       <div className="list">
@@ -21,4 +21,6 @@ export default function RecipeList({ recipes, selected, setSelected }: RecipeLis
       </div>
     </Col>
   );
-}
+};
+
+export default RecipeList;

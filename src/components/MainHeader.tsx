@@ -2,7 +2,7 @@ import React from "react";
 import { SisternodeOutlined } from "@ant-design/icons";
 import { Col, Row } from "antd";
 
-export default function MainHeader() {
+const MainHeader: React.FC<{}> = () => {
   return (
     <header>
       <div className="__main_header">
@@ -16,4 +16,6 @@ export default function MainHeader() {
       </div>
     </header>
   );
-}
+};
+
+export default MainHeader;

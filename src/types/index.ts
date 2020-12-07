@@ -6,15 +6,15 @@ export interface Recipe {
 }
 
 export interface RecipeModalProps {
-  form: Recipe;
-  setform: React.Dispatch<React.SetStateAction<Recipe>>;
-  selected?: Recipe | null;
   open: boolean;
   edit?: boolean;
   isDeleted?: boolean;
+  form: Recipe;
+  setform: React.Dispatch<React.SetStateAction<Recipe>>;
+  selected?: Recipe | null;
+  handleOk: () => void;
   setEdit: (value: boolean) => void;
   setIsDeleted: (value: boolean) => void;
-  handleOk: () => void;
   setOpen: (value: boolean) => void;
   onSubmitHandler: (ev: React.MouseEvent<HTMLElement, MouseEvent>) => void;
   onUpdateHandler: (ev: React.MouseEvent<HTMLElement, MouseEvent>) => void;
@@ -32,9 +32,9 @@ export interface RecipeBodyProps {
   open: boolean;
   selected: Recipe | null;
   setEdit: (value: boolean) => void;
+  setIsDeleted: (value: boolean) => void;
   setOpen: (value: boolean) => void;
   setForm: (selected: Recipe) => void;
-  setIsDeleted: (value: boolean) => void;
 }
 
 export interface NotFoundProps {

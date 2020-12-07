@@ -3,18 +3,16 @@ import { Button, Input, Modal } from "antd";
 import { RecipeModalProps } from "../types";
 import { TextAreaRef } from "antd/lib/input/TextArea";
 
-export default function RecipeModal(props: RecipeModalProps) {
+const RecipeModal: React.FC<RecipeModalProps> = (props) => {
   const recipeNameRef = useRef<Input>(null);
   const recipeIngredientRef = useRef<TextAreaRef>(null);
   useEffect(() => {
-    if (recipeNameRef && recipeNameRef.current) {
-      recipeNameRef.current.focus();
-    }
+    recipeNameRef.current?.focus();
   }, []);
 
-  const recipeNameKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === "Enter" && recipeIngredientRef && recipeIngredientRef.current) {
-      recipeIngredientRef.current.focus();
+  const recipeNameKeyDown = (ev: React.KeyboardEvent<HTMLInputElement>) => {
+    if (ev.key === "Enter") {
+      recipeIngredientRef.current!.focus();
     }
   };
 
@@ -88,4 +86,6 @@ export default function RecipeModal(props: RecipeModalProps) {
       )}
     </Modal>
   );
-}
+};
+
+export default RecipeModal;
