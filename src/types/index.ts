@@ -14,9 +14,9 @@ export interface RecipeModalProps {
   selected?: Recipe | null;
   errors: Errors;
   handleOk: () => void;
-  setEdit: (value: boolean) => void;
-  setIsDeleted: (value: boolean) => void;
-  setOpen: (value: boolean) => void;
+  setEdit: React.Dispatch<React.SetStateAction<boolean>>;
+  setIsDeleted: React.Dispatch<React.SetStateAction<boolean>>;
+  setOpen: React.Dispatch<React.SetStateAction<boolean>>;
   onSubmitHandler: (ev: React.MouseEvent<HTMLElement, MouseEvent>) => void;
   onUpdateHandler: (ev: React.MouseEvent<HTMLElement, MouseEvent>) => void;
   onDeleteHandler: (ev: React.MouseEvent<HTMLElement, MouseEvent>) => void;
@@ -32,17 +32,17 @@ export interface RecipeListProps {
 export interface RecipeBodyProps {
   open: boolean;
   selected: Recipe | null;
-  setEdit: (value: boolean) => void;
-  setIsDeleted: (value: boolean) => void;
-  setOpen: (value: boolean) => void;
+  setEdit: React.Dispatch<React.SetStateAction<boolean>>;
+  setIsDeleted: React.Dispatch<React.SetStateAction<boolean>>;
+  setOpen: React.Dispatch<React.SetStateAction<boolean>>;
   setForm: (selected: Recipe) => void;
 }
 
 export interface NotFoundProps {
   open: boolean;
-  setOpen: (value: boolean) => void;
-  setEdit: (value: boolean) => void;
-  setIsDeleted: (value: boolean) => void;
+  setOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  setEdit: React.Dispatch<React.SetStateAction<boolean>>;
+  setIsDeleted: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 export interface Errors {
