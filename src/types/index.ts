@@ -26,7 +26,7 @@ export interface RecipeModalProps {
 export interface RecipeListProps {
   recipes: Recipe[] | null;
   selected: Recipe | null;
-  setSelected: (recipe: Recipe) => void;
+  setSelected: React.Dispatch<React.SetStateAction<Recipe | null>>;
 }
 
 export interface RecipeBodyProps {
@@ -35,7 +35,7 @@ export interface RecipeBodyProps {
   setEdit: React.Dispatch<React.SetStateAction<boolean>>;
   setIsDeleted: React.Dispatch<React.SetStateAction<boolean>>;
   setOpen: React.Dispatch<React.SetStateAction<boolean>>;
-  setForm: (selected: Recipe) => void;
+  setForm: React.Dispatch<React.SetStateAction<Recipe>>;
 }
 
 export interface NotFoundProps {
