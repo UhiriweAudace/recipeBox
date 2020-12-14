@@ -1,7 +1,7 @@
 import React from "react";
 import { Row, Button } from "antd";
 import { PlusCircleFilled } from "@ant-design/icons";
-import { NotFoundProps } from "../types";
+import { NotFoundProps } from "../interfaces";
 
 const NotFound:React.FC<NotFoundProps> = ({ open, setOpen, setEdit, setIsDeleted }) => {
   return (

@@ -1,18 +1,22 @@
-import { Recipe, Errors } from "../types";
+import { Recipe, Errors } from "../interfaces";
 
-const validateForm = (form: Recipe, errors: Errors, callback: (value: Errors) => void) => {
+const validateForm = (
+  form: Recipe,
+  errors: Errors,
+  setState: React.Dispatch<React.SetStateAction<Errors>>
+): boolean => {
   const { name, ingredients, direction } = form;
   if (!name) {
-    callback({ ...errors, name: "Recipe Name is required" });
+    setState({ ...errors, name: "Recipe Name is required" });
     return false;
   }
 
   if (!ingredients.toString().trim().length) {
-    callback({ ...errors, ingredients: "Recipe Ingredients are required" });
+    setState({ ...errors, ingredients: "Recipe Ingredients are required" });
     return false;
   }
   if (!direction.toString().trim().length) {
-    callback({ ...errors, direction: "Recipe directions are required" });
+    setState({ ...errors, direction: "Recipe directions are required" });
     return false;
   }
   return true;

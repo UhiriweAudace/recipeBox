@@ -1,7 +1,7 @@
 import React from "react";
 import { PlusCircleFilled, EditOutlined, DeleteOutlined } from "@ant-design/icons";
 import { Col, Row, Button } from "antd";
-import { RecipeBodyProps } from "../types";
+import { RecipeBodyProps } from "../interfaces";
 
 const RecipeBody: React.FC<RecipeBodyProps> = ({ selected, setOpen, open, setEdit, setForm, setIsDeleted }) => {
   return (

@@ -1,6 +1,6 @@
 import React from "react";
 import { Col } from "antd";
-import { RecipeListProps } from "../types";
+import { RecipeListProps } from "../interfaces";
 
 const RecipeList: React.FC<RecipeListProps> = ({ recipes, selected, setSelected }) => {
   return (

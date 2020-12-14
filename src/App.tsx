@@ -3,7 +3,7 @@ import { Row, Image, Col } from "antd";
 import { v4 } from "uuid";
 import "./App.scss";
 import { VALUES, RECIPES_USERNAME } from "./constants";
-import { Recipe, Errors } from "./types";
+import { Recipe, Errors } from "./interfaces";
 import MainHeader from "./components/MainHeader";
 import RecipeList from "./components/RecipeList";
 import RecipeBody from "./components/RecipeBody";

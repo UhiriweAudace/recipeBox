@@ -1,6 +1,6 @@
 import React, { useRef, useEffect } from "react";
 import { Button, Input, Modal } from "antd";
-import { RecipeModalProps } from "../types";
+import { RecipeModalProps } from "../interfaces";
 import { TextAreaRef } from "antd/lib/input/TextArea";
 
 const RecipeModal: React.FC<RecipeModalProps> = (props) => {
