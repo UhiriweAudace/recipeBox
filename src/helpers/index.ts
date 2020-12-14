@@ -1,22 +1,16 @@
 import { Recipe, Errors } from "../interfaces";
 
-const validateForm = (
-  form: Recipe,
-  errors: Errors,
-  setState: React.Dispatch<React.SetStateAction<Errors>>
-): boolean => {
-  const { name, ingredients, direction } = form;
-  if (!name) {
-    setState({ ...errors, name: "Recipe Name is required" });
-    return false;
-  }
+const validateForm = (form: Recipe, setState: React.Dispatch<React.SetStateAction<Errors>>): boolean => {
+  let error: Errors = { name: null, ingredients: null, direction: null };
 
-  if (!ingredients.toString().trim().length) {
-    setState({ ...errors, ingredients: "Recipe Ingredients are required" });
-    return false;
-  }
-  if (!direction.toString().trim().length) {
-    setState({ ...errors, direction: "Recipe directions are required" });
+  Object.keys(form).forEach((field) => {
+    if (!form[field] || !form[field].toString().trim().length) {
+      error = { ...error, [field]: `Recipe ${field} is required` };
+    }
+  });
+
+  if (error.name || error.ingredients || error.direction) {
+    setState(error);
     return false;
   }
   return true;

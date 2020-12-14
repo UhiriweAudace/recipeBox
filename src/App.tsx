@@ -48,7 +48,7 @@ const App: React.FC<{}> = () => {
     ev.preventDefault();
 
     // [x]  To Do - Validate Modal form
-    if (!validateForm(form, errors, setErrors)) return;
+    if (!validateForm(form, setErrors)) return;
 
     const data = recipes;
     if (data) {
@@ -72,7 +72,7 @@ const App: React.FC<{}> = () => {
     ev.preventDefault();
 
     // [x]  To Do - Validate Modal form
-    if (!validateForm(form, errors, setErrors)) return;
+    if (!validateForm(form, setErrors)) return;
 
     recipes?.forEach((value, index) => {
       if (value.id === selected?.id) {
