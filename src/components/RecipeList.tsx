@@ -14,7 +14,7 @@ const RecipeList: React.FC<RecipeListProps> = ({ recipes, selected, setSelected 
                 className={recipe.id === selected?.id ? "active" : ""}
                 onClick={() => setSelected(recipe)}
               >
-                {recipe.name}
+                {recipe.name.charAt(0).toUpperCase() + recipe.name.substring(1).toLowerCase()}
               </div>
             );
           })}

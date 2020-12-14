@@ -45,30 +45,30 @@ ol {
   flex-direction: column;
 
   .list {
-    padding: 2rem 10%;
+    margin: 2rem 2rem 7% 2rem;
     line-height: 2.8rem;
+    background-color: $black;
+    border: 2px solid $black;
+    overflow: hidden;
+    color: $white;
 
     div {
-      font-size: 1.2rem;
+      font-size: .9rem;
       font-weight: bold;
-      padding: 5px;
-      margin-bottom: 0.5rem;
-      height: 50px;
+      padding: .5rem;
+      height: 3.5rem;
       overflow: hidden;
       text-overflow: ellipsis !important;
-      width: 250px;
+      // width: 250px;
       white-space: nowrap;
 
       &:hover {
         background-color: $red;
-        border-top-right-radius: 2rem;
-        border-bottom-right-radius: 2rem;
         color: $white;
         transition: 3s background-color;
-        box-shadow: $boxShadow $grey;
         cursor: pointer;
         overflow: hidden;
-        height: 50px;
+        height: 3.5rem;
         text-overflow: ellipsis !important;
       }
     }
@@ -76,16 +76,17 @@ ol {
 }
 
 .active {
-  background-color: $red;
-  border-top-right-radius: 2rem;
-  border-bottom-right-radius: 2rem;
-  color: $white;
+  background-color: $white;
+  // border-top-right-radius: 2rem;
+  // border-bottom-right-radius: 2rem;
+  color: $black;
   transition: 3s background-color;
-  box-shadow: $boxShadow $grey;
+  // box-shadow: $boxShadow $grey;
   cursor: pointer;
   overflow: hidden;
   text-overflow: ellipsis !important;
-  width: 250px;
+  // width: 280px;
+  border: 1px solid $black;
   white-space: nowrap;
 }
 

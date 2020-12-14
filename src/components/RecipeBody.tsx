@@ -6,7 +6,9 @@ import { RecipeBodyProps } from "../interfaces";
 const RecipeBody: React.FC<RecipeBodyProps> = ({ selected, setOpen, open, setEdit, setForm, setIsDeleted }) => {
   return (
     <Col xs={24} sm={16} lg={12} className="right-side">
-      <span className="text text-1">{selected?.name}</span>
+      <span className="text text-1">
+        {selected && selected.name.charAt(0).toUpperCase() + selected.name.substring(1).toLowerCase()}
+      </span>
       <div>
         <div>
           <div className="info-header">
