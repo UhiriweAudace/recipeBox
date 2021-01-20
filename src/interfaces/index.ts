@@ -1,5 +1,5 @@
 export interface Recipe {
-  [x: string]: string|string[];
+  [x: string]: string | string[];
   id: string;
   name: string;
   ingredients: string[];
@@ -39,12 +39,13 @@ export interface RecipeBodyProps {
   setForm: React.Dispatch<React.SetStateAction<Recipe>>;
 }
 
-export interface NotFoundProps {
-  open: boolean;
-  setOpen: React.Dispatch<React.SetStateAction<boolean>>;
-  setEdit: React.Dispatch<React.SetStateAction<boolean>>;
-  setIsDeleted: React.Dispatch<React.SetStateAction<boolean>>;
-}
+export type NotFoundProps = Pick<RecipeBodyProps, 'open' | 'setOpen' | 'setEdit' | 'setIsDeleted'>
+// {
+// open: boolean;
+// setOpen: React.Dispatch<React.SetStateAction<boolean>>;
+// setEdit: React.Dispatch<React.SetStateAction<boolean>>;
+// setIsDeleted: React.Dispatch<React.SetStateAction<boolean>>;
+// }
 
 export interface Errors {
   name: string | null;

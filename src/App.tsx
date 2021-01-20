@@ -91,9 +91,7 @@ const App: React.FC<{}> = () => {
   const onDeleteHandler = (ev: React.MouseEvent<HTMLElement, MouseEvent>): void => {
     ev.preventDefault();
     recipes?.forEach((value, index) => {
-      if (value.id === selected?.id) {
-        delete recipes[index];
-      }
+      if (value.id === selected?.id) delete recipes[index];
     });
     const data = recipes?.filter((value) => value != null);
     localStorage.setItem(RECIPES_USERNAME, JSON.stringify(data));

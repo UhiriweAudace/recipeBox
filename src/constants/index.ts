@@ -1,15 +1,31 @@
-import { v4 } from "uuid"
+import { v4 } from "uuid";
 export const VALUES = [
   {
     id: v4(),
-    name: "Pasta chocolate soup",
-    ingredients: ["2 tablespoons butter ", "2 cloves garlic, minced", " 1 cup heavy cream", "3/4 teaspoon salt", " 1 teaspoon fresh-ground black pepper"],
-    direction: ["Quo expedita, tempora possimus voluptatum ", "cumque doloribus cupiditate iusto veritatis id facere non", "sequi eius similique!"],
+    name: "Tomato soup",
+    ingredients: [
+      "2kg Ab cumque voluptates magni",
+      "2 Ab cumque voluptates ipsam ",
+      " 1 Voluptates ipsam exercitationem magni",
+      "3/4 Cumque voluptates ipsam exercitationem",
+      " 1 Ipsam exercitationem magni",
+    ],
+    direction: [
+      "Quo expedita, tempora possimus voluptatum ",
+      "cumque doloribus cupiditate iusto veritatis id facere non",
+      "sequi eius similique!",
+    ],
   },
   {
     id: v4(),
-    name: "cassava plant oil",
-    ingredients: ["2 tablespoons butter", " 4 cloves garlic, minced", " 3 cup heavy honey", " 1 1/2 teaspoon salt", " 1 teaspoon fresh-ground black pepper"],
+    name: "Cassava",
+    ingredients: [
+      "Lorem, ipsum dolor sit amet ",
+      "2.5kg Ab cumque voluptates ipsam ",
+      "Ab cumque voluptates ipsam",
+      " 1 1/2 Ab cumque voluptates ipsam exercitationem ",
+      " 1 Ab cumque voluptates ipsam exercitationem magni?",
+    ],
     direction: [
       "Lorem, ipsum dolor sit amet consectetur adipisicing elit.",
       "Ab cumque voluptates ipsam exercitationem magni? ",
@@ -20,4 +36,4 @@ export const VALUES = [
   },
 ];
 
-export const RECIPES_USERNAME="audace_recipes"
+export const RECIPES_USERNAME = "audace_recipes";
