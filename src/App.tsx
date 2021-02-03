@@ -103,7 +103,7 @@ const App: React.FC<{}> = () => {
   };
 
   return (
-    <div className="App">
+    <div className="App" data-testid="app">
       <MainHeader />
       {!recipes || !recipes.length ? (
         <NotFound open={open} setOpen={setOpen} setEdit={setEdit} setIsDeleted={setIsDeleted} />
@@ -139,7 +139,7 @@ const App: React.FC<{}> = () => {
         errors={errors}
       />
       <div>
-        <Image className="user-svg" src={UserSvg} width={200} />
+        <Image data-testid="user-svg" className="user-svg" src={UserSvg} width={200} />
       </div>
     </div>
   );

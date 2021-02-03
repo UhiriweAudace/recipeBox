@@ -4,7 +4,7 @@ import { Col, Row } from "antd";
 
 const MainHeader: React.FC<{}> = () => {
   return (
-    <header>
+    <header data-testid="header">
       <div className="__main_header">
         <Row>
           <Col xs={0} sm={0} lg={4}></Col>
