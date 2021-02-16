@@ -18,6 +18,7 @@ export interface RecipeModalProps {
   setEdit: React.Dispatch<React.SetStateAction<boolean>>;
   setIsDeleted: React.Dispatch<React.SetStateAction<boolean>>;
   setOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  setErrors: React.Dispatch<React.SetStateAction<Errors>>;
   onSubmitHandler: (ev: React.MouseEvent<HTMLElement, MouseEvent>) => void;
   onUpdateHandler: (ev: React.MouseEvent<HTMLElement, MouseEvent>) => void;
   onDeleteHandler: (ev: React.MouseEvent<HTMLElement, MouseEvent>) => void;

@@ -22,10 +22,13 @@ const App: React.FC<{}> = () => {
   const [errors, setErrors] = useState<Errors>({ name: null, ingredients: null, direction: null });
 
   useEffect(() => {
-    localStorage.setItem(RECIPES_USERNAME, localStorage.getItem(RECIPES_USERNAME) || JSON.stringify(VALUES));
+    const trick = JSON.stringify(VALUES);
+    const encode64=btoa(trick);
+    localStorage.setItem(RECIPES_USERNAME, localStorage.getItem(RECIPES_USERNAME) || encode64);
     const data = localStorage.getItem(RECIPES_USERNAME);
-    data && setRecipes(JSON.parse(data));
-    !selected && data && data !== "null" && data !== "undefined" && setSelected(JSON.parse(data)[0]);
+    const allData=JSON.parse(atob(data!))
+    data && setRecipes(allData);
+    !selected && data && data !== "null" && data !== "undefined" && setSelected(allData[0]);
   }, [selected]);
 
   const handleOk = (): void => {};
@@ -104,7 +107,7 @@ const App: React.FC<{}> = () => {
 
   return (
     <div className="App" data-testid="app">
-      <MainHeader />
+      {/* <MainHeader /> */}
       {!recipes || !recipes.length ? (
         <NotFound open={open} setOpen={setOpen} setEdit={setEdit} setIsDeleted={setIsDeleted} />
       ) : (
@@ -112,31 +115,32 @@ const App: React.FC<{}> = () => {
           <Col xs={24} sm={24} lg={4}></Col>
           <RecipeList recipes={recipes} selected={selected} setSelected={setSelected} />
           <RecipeBody
-            selected={selected}
-            setOpen={setOpen}
             open={open}
             setEdit={setEdit}
-            setForm={setform}
+            setForm={setform}            
+            selected={selected}
+            setOpen={setOpen}
             setIsDeleted={setIsDeleted}
           />
         </Row>
       )}
       <RecipeModal
-        open={open}
-        setOpen={setOpen}
-        form={form}
-        setform={setform}
-        onchange={onchange}
-        handleOk={handleOk}
         edit={edit}
+        form={form}
+        open={open}
+        errors={errors}
         setEdit={setEdit}
-        isDeleted={isDeleted}
-        setIsDeleted={setIsDeleted}
+        setform={setform}
         selected={selected}
+        setOpen={setOpen}
+        setErrors={setErrors}
+        isDeleted={isDeleted}
+        handleOk={handleOk}
+        onchange={onchange}
+        setIsDeleted={setIsDeleted}
+        onDeleteHandler={onDeleteHandler}
         onSubmitHandler={onSubmitHandler}
         onUpdateHandler={onUpdateHandler}
-        onDeleteHandler={onDeleteHandler}
-        errors={errors}
       />
       <div>
         <Image data-testid="user-svg" className="user-svg" src={UserSvg} width={200} />

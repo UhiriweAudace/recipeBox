@@ -21,6 +21,7 @@ const RecipeModal: React.FC<RecipeModalProps> = (props) => {
     props.setEdit(false);
     props.setIsDeleted(false);
     props.setform({ id: "", name: "", ingredients: [""], direction: [""] });
+    props.setErrors({ name: null, ingredients: null, direction: null });
   };
 
   return (
